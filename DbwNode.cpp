@@ -349,6 +349,7 @@ void DbwNode::recvCAN(const can_msgs::Frame::ConstPtr& msg)
   if (!msg->is_rtr && !msg->is_error && !msg->is_extended) {
     switch (msg->id) {
       case ID_BRAKE_REPORT:
+        std::cout<<"ID_BRAKE_REPORT";
         if (msg->dlc >= sizeof(MsgBrakeReport)) {
           const MsgBrakeReport *ptr = (const MsgBrakeReport*)msg->data.elems;
           faultBrakes(ptr->FLT1 && ptr->FLT2);
@@ -388,6 +389,7 @@ void DbwNode::recvCAN(const can_msgs::Frame::ConstPtr& msg)
         break;
 
       case ID_THROTTLE_REPORT:
+        std::cout<<"ID_THROTTLE_REPORT";
         if (msg->dlc >= sizeof(MsgThrottleReport)) {
           const MsgThrottleReport *ptr = (const MsgThrottleReport*)msg->data.elems;
           faultThrottle(ptr->FLT1 && ptr->FLT2);
